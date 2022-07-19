@@ -1,2 +1,3 @@
 # Project exclude paths
 /common-module/target/
+.idea

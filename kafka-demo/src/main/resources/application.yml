@@ -1,0 +1,23 @@
+server:
+  port: 8001
+
+spring:
+  kafka:
+    # kafka server ip&port 集群用,分隔
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 3 # 失败重试次数
+      batch-size: 16384
+      buffer-memory: 33554432
+      acks: 1
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer: # 消费者
+      group-id: default-group # 消费组
+      enable-auto-commit: false
+      # auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: MANUAL_IMMEDIATE

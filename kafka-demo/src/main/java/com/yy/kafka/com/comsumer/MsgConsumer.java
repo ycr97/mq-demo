@@ -17,7 +17,7 @@ public class MsgConsumer {
 
     @KafkaListener(topics = {"test_topic"}, groupId = "test_group")
     public void msgConsumer(ConsumerRecord<String, String> record) {
-        record.value();
+        System.out.println(record.value());
         try (OutputStreamWriter writer = new OutputStreamWriter(Files.newOutputStream(Paths.get("D:/mq-test.txt")))) {
             writer.write(record.value());
         } catch (Exception e) {
